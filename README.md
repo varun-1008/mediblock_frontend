@@ -1,4 +1,4 @@
-#Github branch cycle
+# Github branch cycle
 
 1. Pull from origin before creating branch make sure you are on `main` branch.
    - `git switch main`
