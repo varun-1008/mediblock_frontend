@@ -1,10 +1,9 @@
 import { ConnectWallet } from "@thirdweb-dev/react";
-import styles from "./Header.module.css";
 
 function Header() {
   return (
     <>
-      <nav className={styles.nav}>
+      <nav>
         <h1>MediBlock Secure</h1>
         <ConnectWallet />
       </nav>
