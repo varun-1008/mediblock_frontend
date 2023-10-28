@@ -1,6 +1,6 @@
 import { ThirdwebProvider, metamaskWallet } from "@thirdweb-dev/react";
 import "@/styles/globals.css";
-import Header from "@/components/Header";
+import Layout from "@/components/Layout";
 
 export default function App({ Component, pageProps }) {
   return (
@@ -9,9 +9,6 @@ export default function App({ Component, pageProps }) {
         activeChain={{
           chainId: 31337,
           rpc: ["http://127.0.0.1:8545/"],
-
-          // === Information for adding the network to your wallet (how it will appear for first time users) === \\
-          // Information about the chain's native currency (i.e. the currency that is used to pay for gas)
           nativeCurrency: {
             decimals: 18,
             name: "ETH",
@@ -26,8 +23,9 @@ export default function App({ Component, pageProps }) {
         clientId="2b3a9c0a945e13740a28585def1f1ad2"
         supportedWallets={[metamaskWallet()]}
       >
-        <Header />
-        <Component {...pageProps} />
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
       </ThirdwebProvider>
     </>
   );
