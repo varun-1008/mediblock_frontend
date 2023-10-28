@@ -2,12 +2,12 @@ import { ConnectWallet } from "@thirdweb-dev/react";
 
 function Header() {
   return (
-    <>
-      <nav>
-        <h1>MediBlock Secure</h1>
+    <div className="w-11/12 mx-auto py-3">
+      <nav className="flex justify-between items-center">
+        <h1 className="text-xl font-bold">MediBlock Secure</h1>
         <ConnectWallet />
       </nav>
-    </>
+    </div>
   );
 }
 
