@@ -1,6 +1,7 @@
 import { ThirdwebProvider, metamaskWallet } from "@thirdweb-dev/react";
 import "@/styles/globals.css";
 import Layout from "@/components/Layout";
+import { RoleProvider } from "@/context/role";
 
 export default function App({ Component, pageProps }) {
   return (
@@ -23,9 +24,11 @@ export default function App({ Component, pageProps }) {
         clientId="2b3a9c0a945e13740a28585def1f1ad2"
         supportedWallets={[metamaskWallet()]}
       >
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
+        <RoleProvider>
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
+        </RoleProvider>
       </ThirdwebProvider>
     </>
   );

@@ -6,12 +6,15 @@ import {
 } from "@thirdweb-dev/react";
 import { contractAddresses, abi } from "@/constants/index";
 import Head from "next/head";
+import RoleContext from "@/context/role";
 import { useRouter } from "next/router";
+import { useContext } from "react";
 
 export default function Home() {
   const address = useAddress();
   const chainId = useChainId();
   const router = useRouter();
+  const {role, setRole} = useContext(RoleContext);
 
   const contractAddress = contractAddresses[chainId];
   const { contract } = useContract(contractAddress, abi);
@@ -45,8 +48,12 @@ export default function Home() {
         />
       </Head>
       {address ? address : "No account"}
+      <br></br>
       {chainId ? chainId : "No chain Id"}
+      <br></br>
       {data}
+      <br></br>
+      {role}
     </>
   );
 }

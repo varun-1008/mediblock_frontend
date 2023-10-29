@@ -22,4 +22,9 @@
    - `git push origin branch_name`
 8. Do a pull request in github.
 
+9. To delete a branch locally
+  - `git branch -d <branch>`
+10. To delete a branch remotely
+  - `git push <remote> --delete <branch>`
+
 ### Do not Merge
