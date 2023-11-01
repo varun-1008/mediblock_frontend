@@ -1,15 +1,19 @@
-import { useState } from "react";
-import Header from "./Header";
+import Header from "./Header1";
+import Head from "next/head";
 
-function Layout({ children }) {
-  const [role, setRole] = useState(0);
+function Layout({ children }) {  
   return (
-    <>
-      <Header role={role} setRole={setRole} />
-      <main role={role} setRole={setRole} className="w-11/12 mx-auto">
-        {children}
-      </main>
-    </>
+    <div>
+      <Head>
+        <title>MediBlock Secure</title>
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1"
+        />
+      </Head>
+      <Header />
+    <main className="w-11/12 mx-auto">{children}</main>
+    </div>
   );
 }
 

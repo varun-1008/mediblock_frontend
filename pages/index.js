@@ -1,34 +1,11 @@
-import {
-  useContractRead,
-  useContract,
-  useChainId,
-  useAddress,
-} from "@thirdweb-dev/react";
-import { contractAddresses, abi } from "@/constants/index";
-import Head from "next/head";
-import RoleContext from "@/context/role";
+import AccountContext from "@/context/account";
 import { useRouter } from "next/router";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 
 export default function Home() {
-  const address = useAddress();
-  const chainId = useChainId();
   const router = useRouter();
-  const {role, setRole} = useContext(RoleContext);
 
-  const contractAddress = contractAddresses[chainId];
-  const { contract } = useContract(contractAddress, abi);
-  const { data, isLoading, error } = useContractRead(contract, "role", [
-    address,
-  ]);
-  
-  if (!address) return <h1>please log in</h1>;
-
-  if (chainId != 31337) return <h1>Invalid chain Id</h1>;
-
-  if (error) {
-    console.error("Failed to read contract", error);
-  }
+  const { roleC, addressC, contractC } = useContext(AccountContext);
 
   const roleMap = {
     0: "/register",
@@ -36,24 +13,24 @@ export default function Home() {
     2: "/doctor",
   };
 
-  // router.push(roleMap[data]);
+  useEffect(() => {
+  }, []);
 
-  return (
-    <>
-      <Head>
-        <title>MediBlock Secure</title>
-        <meta
-          name="viewport"
-          content="width=device-width, initial-scale=1"
-        />
-      </Head>
-      {address ? address : "No account"}
-      <br></br>
-      {chainId ? chainId : "No chain Id"}
-      <br></br>
-      {data}
-      <br></br>
-      {role}
-    </>
-  );
+  useEffect(() => {
+    if (roleC !== -1)
+      router.push(roleMap[roleC])
+  });
+
+  if(addressC === undefined) {
+    return <h1>Please log in</h1>
+  }
+
+  if(contractC === undefined) {
+    return <h1>connecting to contract</h1>
+  }
+
+  if(roleC === -1)
+      return <h1>Unable to fetch role</h1>
+  else
+    return <h1>Connecting account and fetching data</h1>
 }
