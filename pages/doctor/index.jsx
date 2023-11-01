@@ -2,7 +2,7 @@ import AccountContext from "@/context/account";
 import Link from "next/link";
 import { useContext } from "react";
 
-function Patient() {
+function Doctor() {
   const { roleC } = useContext(AccountContext);
 
   if (roleC === -1) return <h1>Unable to fetch role</h1>;
@@ -10,13 +10,13 @@ function Patient() {
   if (roleC === 0) {
     return (
       <>
-        <h1>Please registere</h1>
+        <h1>Please registered</h1>
         <Link href="/register">Register</Link>
       </>
     );
   }
 
-  if (roleC !== 1) {
+  if (roleC !== 2) {
     return (
       <>
         <h1>Access denied</h1>
@@ -26,12 +26,11 @@ function Patient() {
 
   return (<>
   <div className="flex flex-col">
-    <Link href="/patient/profile">Profile</Link>
-    <Link href="/patient/records">Records</Link>
-    <Link href="/patient/appointments">Appointments</Link>
-    <Link href="/patient/emergency-records">Emergency records</Link>
+    <Link href="/doctor/profile">Profile</Link>
+    <Link href="/doctor/appointments">Appointments</Link>
+    <Link href="/doctor/emergency-records">Emergency Records</Link>
   </div>
   </>);
 }
 
-export default Patient;
+export default Doctor;
